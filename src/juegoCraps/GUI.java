@@ -4,7 +4,7 @@ import javax.swing.*;
 import java.awt.*;
 
 /**
- * This class is used for
+ * This class is used for...
  * @author Carlos Andrés Borja - Univalle
  * @version v.1.0.0 date:23/11/2021
  */
