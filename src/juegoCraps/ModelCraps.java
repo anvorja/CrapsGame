@@ -101,8 +101,7 @@ public class ModelCraps {
             case (1) -> estadoToString = "Sacaste Natural, has ganado!!!";
             case (2) -> estadoToString = "Sacaste Craps, has perdido!!!";
             case (3) -> estadoToString = "Estableciste punto en " + punto + ". " +
-                    "Sigue lanzando" +
-                    "\npero si sacas 7 antes que " + punto + " perderás";
+                    "\nSigue lanzando, pero si sacas 7 antes que " + punto + " perderás";
             case (4) -> estadoToString = "Volviste a sacar " + punto + ", has ganado!!!";
             case (5) -> estadoToString = "Sacaste 7 antes de " + punto + ", has perdido!!!";
         }

@@ -18,7 +18,7 @@ public class GUI extends JFrame {
             "\nSi tu tiro de salida es 7 u 11 ganas con Natural." +
             "\nSi tu tiro de salida es 2, 3 u 12 pierdes con Craps." +
             "\nSi sacas cualquier otro valor establecerás el \"Punto\"." +
-            "\nEstado en \"Punto\" podrás seguir lanzando los dados," +
+            "\nEstando en \"Punto\" podrás seguir lanzando los dados," +
             "\npero ahora ganarás si sacas nuevamente el valor"+
             "\ndel \"Punto\" sin que previamente hayas sacado 7.";
 
@@ -63,7 +63,7 @@ public class GUI extends JFrame {
         headerProject = new Header("Mesa Juego Craps", Color.BLACK);
         this.add(headerProject,BorderLayout.NORTH);
 
-        imageDado = new ImageIcon(getClass().getResource("/recursos/dado.png"));
+        imageDado = new ImageIcon(getClass().getResource("/recursos/dado_1 (2) - copia-edt.png"));
         //etiquetas de cada dado
         dado1 = new JLabel(imageDado);
         dado2 = new JLabel(imageDado);
@@ -110,10 +110,12 @@ public class GUI extends JFrame {
         public void actionPerformed(ActionEvent e) {
             modelCraps.calcularTiro();
             int[] caras = modelCraps.getCaras();
-            imageDado = new ImageIcon(getClass().getResource("/recursos/"+caras[0]+".png"));
+//            imageDado = new ImageIcon(getClass().getResource("/recursos/"+caras[0]+".png"));
+            imageDado = new ImageIcon(getClass().getResource("/recursos/120x120/"+caras[0]+"dado 120-120.png"));
             dado1.setIcon(imageDado);
 
-            imageDado = new ImageIcon(getClass().getResource("/recursos/"+caras[1]+".png"));
+//            imageDado = new ImageIcon(getClass().getResource("/recursos/"+caras[1]+".png"));
+            imageDado = new ImageIcon(getClass().getResource("/recursos/120x120/"+caras[1]+"dado 120-120.png"));
             dado2.setIcon(imageDado);
 
             modelCraps.determinarJuego();
