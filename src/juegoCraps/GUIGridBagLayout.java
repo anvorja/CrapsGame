@@ -5,14 +5,8 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-/**
- * This class is designed in order to view class ModelCraps
- * @author Carlos Andrés Borja - Univalle
- * @version v.1.0.1 date: 07/12/2021
- */
-public class GUI extends JFrame {
+public class GUIGridBagLayout extends JFrame {
 
-    //creamos constante de clase
     private static final String MENSAJE_INICIO = "Bienvenido a Craps \n"+
             "Oprime el botón lanzar para iniciar el juego." +
             "\nSi tu tiro de salida es 7 u 11 ganas con Natural." +
@@ -25,20 +19,17 @@ public class GUI extends JFrame {
 
     private Header headerProject;
     private JLabel dado1, dado2;
-    private JButton lanzar;
-    private JPanel panelDados, panelResultados;
+    private JButton lanzar, ayuda, salida;
+    private JPanel panelDados;
     private ImageIcon imageDado;
     private JTextArea mensajesSalida, resultadoDados;
-    private JSeparator separator;
     private Escucha escucha;
     private ModelCraps modelCraps;
 
-
-
     /**
-     * Constructor of GUI class
+     * Constructor of GUIGridBagLayout class
      */
-    public GUI(){
+    public GUIGridBagLayout(){
         initGUI();
 
         //Default JFrame configuration
@@ -52,71 +43,61 @@ public class GUI extends JFrame {
 
     /**
      * This method is used to set up the default JComponent Configuration,
-     * create Listener and control Objects used for the GUI class
+     * create Listener and control Objects used for the GUIGridBagLayout class
      */
     private void initGUI() {
         //Set up JFrame Container's Layout
-        //Create Listener Object or Control Object
+        //obtenemos el contenedor y se modifica
+        this.getContentPane().setLayout(new GridBagLayout());
+        GridBagConstraints constraints = new GridBagConstraints();
+
+
+        //Create Listener Object and Control Object
         escucha = new Escucha();
         modelCraps = new ModelCraps();
 
         //Set up JComponents
         headerProject = new Header("Mesa Juego Craps", Color.BLACK);
-        this.add(headerProject,BorderLayout.NORTH);
 
-        imageDado = new ImageIcon(getClass().getResource("/recursos/dado_1 (2) - copia-edt.png"));
-        //etiquetas de cada dado
-        dado1 = new JLabel(imageDado);
-        dado2 = new JLabel(imageDado);
+        //Set up constraints
+        constraints.gridx = 0;
+        constraints.gridy = 0;
+        constraints.gridheight = 2;
+        constraints.fill = GridBagConstraints.HORIZONTAL;
+        this.add(headerProject, constraints);
 
-        lanzar = new JButton("Lanzar");
-        lanzar.addActionListener(escucha);
-        panelDados = new JPanel();
-        panelDados.setPreferredSize(new Dimension(300,180));
-        panelDados.setBorder(BorderFactory.createTitledBorder("Tus dados"));
-        panelDados.add(dado1);
-        panelDados.add(dado2);
-        panelDados.add(lanzar);
+        //Set up boton ayuda
+        ayuda = new JButton("?");
+        ayuda.addActionListener(escucha);
+        //Set up constraints
+        constraints.gridx = 0;
+        constraints.gridy = 1;
+        constraints.gridheight = 1;
+        constraints.fill = GridBagConstraints.NONE;
+        constraints.anchor = GridBagConstraints.LINE_START;
+        this.add(ayuda, constraints);
 
-        this.add(panelDados,BorderLayout.CENTER);
-
-
-        mensajesSalida = new JTextArea(7,31);
-        mensajesSalida.setText(MENSAJE_INICIO);
-        //mensajesSalida.setBorder(BorderFactory.createTitledBorder("Instruciones"));
-        JScrollPane scroll = new JScrollPane(mensajesSalida);
-
-        panelResultados = new JPanel();
-        panelResultados.setBorder(BorderFactory.createTitledBorder("Instruciones"));
-        panelResultados.add(scroll);
-        panelResultados.setPreferredSize(new Dimension(370,180));
-
-
-        this.add(panelResultados, BorderLayout.EAST);
-
-        //área de texto, resultados de dados
-        resultadoDados = new JTextArea(4,31);
-        separator = new JSeparator();
-        separator.setPreferredSize(new Dimension(320,7));
-        separator.setBackground(Color.LIGHT_GRAY);
-
-
+        //Set up boton salida
+        salida = new JButton("Salir");
+        salida.addActionListener(escucha);
+        //Set up constraints
+        constraints.gridx = 1;
+        constraints.gridy = 1;
+        constraints.gridheight = 1;
+        constraints.fill = GridBagConstraints.NONE;
+        constraints.anchor = GridBagConstraints.LINE_END;
+        this.add(salida, constraints);
 
     }
 
-    /**
-     * Main process of the Java program
-     * @param args Object used in order to send input data from command line when
-     *             the program is execute by console.
-     */
     public static void main(String[] args){
         EventQueue.invokeLater(() -> {
-            GUI miProjectGUI = new GUI();
+            GUIGridBagLayout miProjectGUI = new GUIGridBagLayout();
         });
     }
 
     /**
-     * inner class that extends an Adapter Class or implements Listeners used by GUI class
+     * inner class that extends an Adapter Class or implements Listeners used by GUIGridBagLayout class
      */
     private class Escucha implements ActionListener {
 
@@ -135,16 +116,11 @@ public class GUI extends JFrame {
 
             modelCraps.determinarJuego();
 
-            panelResultados.removeAll();
-            panelResultados.setBorder(BorderFactory.createTitledBorder("Resultados"));
-            panelResultados.add(resultadoDados);
-            panelResultados.add(separator);
-            panelResultados.add(mensajesSalida);
+
             resultadoDados.setText(modelCraps.getEstadoToString()[0]);
             mensajesSalida.setRows(4);
             mensajesSalida.setText(modelCraps.getEstadoToString()[1]);
-            revalidate();
-            repaint();
+
 
 
 
