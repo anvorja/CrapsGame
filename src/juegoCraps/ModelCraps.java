@@ -44,9 +44,11 @@ public class ModelCraps {
      */
     public void determinarJuego(){
         if(bandera == 0){
+            //jugador gana (Natural)
             if(tiro == 7 || tiro == 11){
                 estado = 1;
             }else{
+                //jugador pierde
                 if(tiro == 3 || tiro == 2 || tiro == 12){
                     estado = 2;
                 }else{
@@ -69,10 +71,12 @@ public class ModelCraps {
      * estado 5 = Loser point
      */
     private void rondaPunto() {
+        //Gana
         if(tiro == punto){
             estado = 4;
             bandera = 0;
         }
+        //Pierde
         if(tiro == 7){
             estado = 5;
             bandera = 0;
@@ -94,13 +98,13 @@ public class ModelCraps {
     public String getEstadoToString() {
 
         switch (estado) {
-            case (1) -> estadoToString = "Sacaste Natural, has ganado!!!!";
+            case (1) -> estadoToString = "Sacaste Natural, has ganado!!!";
             case (2) -> estadoToString = "Sacaste Craps, has perdido!!!";
             case (3) -> estadoToString = "Estableciste punto en " + punto + ". " +
-                    "Debes seguir lanzando" +
+                    "Sigue lanzando" +
                     "\npero si sacas 7 antes que " + punto + " perderás";
             case (4) -> estadoToString = "Volviste a sacar " + punto + ", has ganado!!!";
-            case (5) -> estadoToString = "Sacaste 7 antes que " + punto + ", has perdido!!!";
+            case (5) -> estadoToString = "Sacaste 7 antes de " + punto + ", has perdido!!!";
         }
         return estadoToString;
     }
