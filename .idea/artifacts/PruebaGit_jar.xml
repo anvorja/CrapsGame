@@ -1,0 +1,8 @@
+<component name="ArtifactManager">
+  <artifact type="jar" name="PruebaGit:jar">
+    <output-path>$PROJECT_DIR$/out/artifacts/PruebaGit_jar</output-path>
+    <root id="archive" name="PruebaGit.jar">
+      <element id="module-output" name="PruebaGit" />
+    </root>
+  </artifact>
+</component>
