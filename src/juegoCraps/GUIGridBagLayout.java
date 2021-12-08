@@ -34,6 +34,8 @@ public class GUIGridBagLayout extends JFrame {
 
         //Default JFrame configuration
         this.setTitle("Craps Game");
+        //this.setUndecorated(true);//quitar decorado a la ventana
+        //this.setBackground(new Color(255,155,255,255));
         this.pack();
         this.setResizable(true);
         this.setVisible(true);
@@ -113,6 +115,8 @@ public class GUIGridBagLayout extends JFrame {
         resultadoDados = new JTextArea(4,31);
         resultadoDados.setBorder(BorderFactory.createTitledBorder("Resultados"));
         resultadoDados.setText("Debes lanzar los dados");
+        resultadoDados.setBackground(null);
+        resultadoDados.setEditable(false);
         //Set up constraints area texto resultados
         constraints.gridx = 1;
         constraints.gridy = 2;
@@ -136,6 +140,8 @@ public class GUIGridBagLayout extends JFrame {
         mensajesSalida = new JTextArea(3,26);
         mensajesSalida.setText("Usa el boton de ayuda \"?\" de la izquierda superior\npara las instrucciones del juego.");
         mensajesSalida.setBorder(BorderFactory.createTitledBorder("Instruciones"));
+        mensajesSalida.setBackground(null);
+        mensajesSalida.setEditable(false);
         //Set up constraints mensajes de salida
         constraints.gridx = 0;
         constraints.gridy = 4;
