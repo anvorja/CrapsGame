@@ -33,7 +33,7 @@ public class GUIGridBagLayout extends JFrame {
         initGUI();
 
         //Default JFrame configuration
-        this.setTitle("Game Craps");
+        this.setTitle("Craps Game");
         this.pack();
         this.setResizable(true);
         this.setVisible(true);
@@ -62,31 +62,89 @@ public class GUIGridBagLayout extends JFrame {
         //Set up constraints
         constraints.gridx = 0;
         constraints.gridy = 0;
-        constraints.gridheight = 2;
+        constraints.gridwidth = 2;
         constraints.fill = GridBagConstraints.HORIZONTAL;
         this.add(headerProject, constraints);
+
 
         //Set up boton ayuda
         ayuda = new JButton("?");
         ayuda.addActionListener(escucha);
-        //Set up constraints
+        //Set up constraints ayuda
         constraints.gridx = 0;
         constraints.gridy = 1;
-        constraints.gridheight = 1;
+        constraints.gridwidth = 1;
         constraints.fill = GridBagConstraints.NONE;
         constraints.anchor = GridBagConstraints.LINE_START;
         this.add(ayuda, constraints);
 
+
         //Set up boton salida
         salida = new JButton("Salir");
         salida.addActionListener(escucha);
-        //Set up constraints
+        //Set up constraints salida
         constraints.gridx = 1;
         constraints.gridy = 1;
-        constraints.gridheight = 1;
+        constraints.gridwidth = 1;
         constraints.fill = GridBagConstraints.NONE;
         constraints.anchor = GridBagConstraints.LINE_END;
         this.add(salida, constraints);
+
+
+        //Imagen del dado
+        imageDado = new ImageIcon(getClass().getResource("/recursos/dado_1 (2) - copia-edt.png"));
+        //etiquetas de cada dado
+        dado1 = new JLabel(imageDado);
+        dado2 = new JLabel(imageDado);
+        panelDados = new JPanel();
+        panelDados.setPreferredSize(new Dimension(300,180));
+        panelDados.setBorder(BorderFactory.createTitledBorder("Tus dados"));
+        panelDados.add(dado1);
+        panelDados.add(dado2);
+        //Set up constraints dado
+        constraints.gridx = 0;
+        constraints.gridy = 2;
+        constraints.gridwidth = 1;
+        constraints.fill = GridBagConstraints.BOTH;
+        constraints.anchor = GridBagConstraints.CENTER;
+        this.add(panelDados, constraints);
+
+        //Area de texto resultados
+        resultadoDados = new JTextArea(4,31);
+        resultadoDados.setBorder(BorderFactory.createTitledBorder("Resultados"));
+        resultadoDados.setText("Debes lanzar los dados");
+        //Set up constraints area texto resultados
+        constraints.gridx = 1;
+        constraints.gridy = 2;
+        constraints.gridwidth = 1;
+        constraints.fill = GridBagConstraints.BOTH;
+        constraints.anchor = GridBagConstraints.CENTER;
+        this.add(resultadoDados, constraints);
+
+        //botón lanzar
+        lanzar = new JButton("Lanzar");
+        lanzar.addActionListener(escucha);
+        //Set up constraints botón lanzar
+        constraints.gridx = 0;
+        constraints.gridy = 3;
+        constraints.gridwidth = 2;
+        constraints.fill = GridBagConstraints.NONE;
+        constraints.anchor = GridBagConstraints.CENTER;
+        this.add(lanzar, constraints);
+
+        //mensajes de salida
+        mensajesSalida = new JTextArea(3,26);
+        mensajesSalida.setText("Usa el boton de ayuda \"?\" de la izquierda superior\npara las instrucciones del juego.");
+        mensajesSalida.setBorder(BorderFactory.createTitledBorder("Instruciones"));
+        //Set up constraints mensajes de salida
+        constraints.gridx = 0;
+        constraints.gridy = 4;
+        constraints.gridwidth = 2;
+        constraints.fill = GridBagConstraints.NONE;
+        constraints.anchor = GridBagConstraints.CENTER;
+        this.add(mensajesSalida, constraints);
+
+
 
     }
 
