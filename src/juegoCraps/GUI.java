@@ -125,11 +125,9 @@ public class GUI extends JFrame {
         public void actionPerformed(ActionEvent e) {
             modelCraps.calcularTiro();
             int[] caras = modelCraps.getCaras();
-//            imageDado = new ImageIcon(getClass().getResource("/recursos/"+caras[0]+".png"));
+
             imageDado = new ImageIcon(getClass().getResource("/recursos/120x120/"+caras[0]+"dado 120-120.png"));
             dado1.setIcon(imageDado);
-
-//            imageDado = new ImageIcon(getClass().getResource("/recursos/"+caras[1]+".png"));
             imageDado = new ImageIcon(getClass().getResource("/recursos/120x120/"+caras[1]+"dado 120-120.png"));
             dado2.setIcon(imageDado);
 
